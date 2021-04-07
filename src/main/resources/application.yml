@@ -1,0 +1,30 @@
+server:
+  servlet:
+    context-path: /spring-boot-app/api
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;Mode=PostgreSQL
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  messages:
+    basename: i18n/messages
+
+  autoconfigure:
+    exclude[0]: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+    exclude[1]: org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
