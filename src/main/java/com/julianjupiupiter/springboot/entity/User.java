@@ -1,5 +1,6 @@
 package com.julianjupiupiter.springboot.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,16 +15,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String firstName;
     private String middleName;
+    @Column(nullable = false)
     private String lastName;
     private String extensionName;
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(length = 11)
     private String mobileNumber;
+    @Column(columnDefinition = "timestamp with time zone default current_timestamp")
     private OffsetDateTime createdAt;
-    private OffsetDateTime updatedAt;
 
     public Long getId() {
         return id;
@@ -112,15 +119,6 @@ public class User {
 
     public User setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
-        return this;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public User setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
         return this;
     }
 }
